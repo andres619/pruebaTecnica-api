@@ -1,0 +1,27 @@
+.inputFinanciero {
+  width:100%;
+  height:100%
+}
+.labelCheckBox{
+margin-top: 9px !important;
+margin-right:10px !important
+}
+.divCheckBox{
+padding-top: 11px !important;
+}
+#clientes-datacredito {
+  ul {
+    li {
+      width: 20% !important;
+      display: flex;
+    }
+  }
+}
+.div-paginacion{
+  margin-top: 26px;
+  margin-right:-40px;
+}
+.div-span-info{
+  margin-top: -25px;
+  margin-bottom: 20px;
+}

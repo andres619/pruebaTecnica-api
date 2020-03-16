@@ -1,0 +1,7 @@
+/build/
+.classpath
+.gradle
+.settings
+.project
+/pruebaTecnica-ui/app/libs/*
+/pruebaTecnica-ui/package-lock.json

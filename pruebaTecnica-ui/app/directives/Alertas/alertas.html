@@ -1,0 +1,5 @@
+
+<div>
+	<alert id='statusMessages' ng-repeat="alert in alertas"
+		type="{{alert.type}}" close="alert.close()">{{alert.message}}</alert>
+</div>

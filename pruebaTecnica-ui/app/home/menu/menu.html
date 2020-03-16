@@ -1,0 +1,12 @@
+<accordion close-others="accordion.closeOthers" id="menuP">
+	<accordion-group is-open="module.isOpen" data-ng-repeat="module in modules">
+		<accordion-heading>
+			{{module.description}} <i class="pull-right fa" ng-class="{'fa-chevron-down': !module.isOpen, 'fa-chevron-up': module.isOpen}"></i>
+		</accordion-heading>
+		<ul data-ng-if="module.options.length > 0">
+			<li data-ng-repeat="option in module.options">
+				<a id="{{ option.description }}" ui-sref="{{option.config}}">{{option.description}}</a>
+			</li>
+		</ul>
+	</accordion-group>
+</accordion>

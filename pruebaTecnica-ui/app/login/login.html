@@ -1,0 +1,19 @@
+<div style='margin: 3%;'>
+	<alertas-directive alertas="alertas" ng-if="alertas.length > 0">
+	</alertas-directive>
+</div>
+
+
+<div class="container-fluid">
+	<section id="login">
+		<div class="logo">
+	</div>
+		<form name="form" role="form">
+			<div class="contLogin">
+				<input required data-ng-model="user.username" data-ng-keyup="changeFocus($event, '#password')" type="text" id="username" name="username" placeholder="Usuario">
+				<input required data-ng-model="user.password" data-ng-keyup="$event.keyCode == 13 && form.$valid && login()" type="password" id="password" name="password" placeholder="Contraseña">
+				<button data-ng-click="login()"  id="btnLogin" name="btnLogin" type="button">Iniciar sesión</button>
+			</div>
+		</form>
+	</section>
+</div>

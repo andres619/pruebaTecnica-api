@@ -1,0 +1,92 @@
+<alertas-directive alertas="alertas" ng-if="alertas.length>0">
+</alertas-directive>
+<div class="head">
+	<h2>Consultar Movimientos</h2>
+	<div class="clear"></div>
+</div>
+<br>
+
+<div class="content-app">
+	<div class="row">
+		<div class="col-md-6 div-span-info">
+			<span> Filtre por la referencia del producto para consultar los
+				movimientos</span>
+		</div>
+	</div>
+
+	<!-- Loader template -->
+	<script type="text/ng-template" id="loader.tpl.html">
+        <div style="background:url('images/spinner.gif') no-repeat center center; margin-left: auto;
+    			margin-right: auto; width: 100px; height: 100px;"></div>
+    </script>
+
+	<div ng-http-loader methods="['POST', 'GET']"
+		template="loader.tpl.html" title="Generando Reporte"></div>
+	<div class="clear"></div>
+
+	<br />
+
+	<div class="row">
+		<div class="col-md-3">
+			<label>Referencia Producto</label> <input id='referenciaProducto'
+				ng-model="filtro.referenciaProducto" type="text" class="inputFinanciero"
+				required="true">
+		</div>
+
+		<div class="col-md-2 div-paginacion">
+			<button type="button" class="btn-principal" id='btnGuardarCambios'
+				ng-click="buscarMovimientosReferencia()">Buscar</button>
+		</div>
+
+	</div>
+</div>
+
+<div id="reporte-abonos" class="content-app"
+	ng-if="movimientosFiltrados.length > 0">
+
+	<div class="row">
+		<div class="col-md-3">
+			<label>Descripción Producto</label> <input id='descripcion'
+				ng-model="producto.descripcion" type="text" class="inputFinanciero"
+				ng-disabled="true" required="true">
+		</div>
+		<div class="col-md-3">
+			<label>Cantidad Disponible</label> <input id='cantidadDisponible'
+				ng-model="producto.cantidadDisponible" type="text"
+				class=" inputFinanciero" ng-disabled="true" required="true">
+		</div>
+	</div>
+	<br></br>
+
+	<ul class="flex headTable" ng-if="movimientosFiltrados.length > 0">
+		<li style="width: 20% !important;">Fecha</li>
+		<li style="width: 50% !important;">Detalle</li>
+		<li style="width: 15% !important;">Entradas</li>
+		<li style="width: 15% !important;">Salidas</li>
+	</ul>
+	<ul class="flex contTable"
+		data-ng-repeat="cliente in filtered = movimientosFiltrados| paging : (paging.page - 1) * paging.limit | limitTo : paging.limit"
+		ng-if="movimientosFiltrados.length > 0">
+		<li style="width: 20% !important;">{{cliente.fechaMovimiento}}</li>
+		<li style="width: 50% !important;">{{cliente.detalleMovimiento}}</li>
+		<li style="width: 15% !important;"
+			ng-if="cliente.tipoMovimiento==='ENTRADA'">{{cliente.cantidadMovimiento}}</li>
+		<li style="width: 15% !important;"
+			ng-if="cliente.tipoMovimiento==='SALIDA'"></li>
+		<li style="width: 15% !important;"
+			ng-if="cliente.tipoMovimiento==='SALIDA'">{{cliente.cantidadMovimiento}}</li>
+	</ul>
+</div>
+
+<div class="row">
+	<div class="col-md-8">
+		<div class="paginador" style="margin-left: 190px !important">
+			<pagination on-select-page="setPage(page)" page="paging.page"
+				total-items="paging.items" ng-model="paging.page"
+				max-size="paging.maxSize" items-per-page="paging.limit"
+				class="pagination-sm" boundary-links="true" rotate="false"
+				previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+				last-text="&raquo;" data-ng-if="movimientosFiltrados.length>0" />
+		</div>
+	</div>
+</div>

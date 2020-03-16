@@ -1,0 +1,18 @@
+LOG:  database system was shut down at 2017-08-08 22:03:50 CST
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "rock3r" does not exist
+ERROR:  syntax error at or near "clear" at character 1
+STATEMENT:  clear
+	;
+ERROR:  permission denied for relation service_service
+STATEMENT:  SELECT * FROM public.service_service
+	ORDER BY id ASC 
+ERROR:  must be member of role "rock3r"
+STATEMENT:  ALTER DATABASE easymoto OWNER TO rock3r;
+WARNING:  there is no transaction in progress
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down

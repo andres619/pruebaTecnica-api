@@ -1,0 +1,64 @@
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+
+  dependencies {
+    classpath 'com.moowork.gradle:gradle-node-plugin:0.13'
+    classpath 'com.moowork.gradle:gradle-gulp-plugin:0.13'
+  }
+}
+
+apply plugin: 'war'
+apply plugin: "jacoco"
+apply plugin: 'com.moowork.node'
+apply plugin: 'com.moowork.gulp'
+
+[ compileJava, compileTestJava ]*.options*.encoding = 'UTF-8'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+group = 'co.com.todo1.store'
+
+dependencies {
+	providedCompile project(':pruebaTecnica-ejb')
+	providedCompile 'org.jboss.spec:jboss-javaee-7.0:1.0.3.Final'
+	providedCompile 'org.eclipse.jetty:jetty-servlets:9.3.0.M2'
+
+	testCompile 'junit:junit:4.11'
+	testCompile 'org.mockito:mockito-all:1.9.5'
+	 
+} 
+
+repositories {
+	mavenCentral()
+	maven {
+	  url 'https://maven.google.com'
+	 }	
+}
+
+node {
+	nodeModulesDir = file("../pruebaTecnica-ui")
+	download = false
+}
+
+gulp {
+    // Set the directory where gulpfile.js should be found
+    workDir = file("../pruebaTecnica-ui")
+
+    // Whether colors should output on the terminal
+    colors = true
+
+    // Whether output from Gulp should be buffered - useful when running tasks in parallel
+    bufferOutput = false
+}
+
+war {
+	from '../pruebaTecnica-ui/app'
+	archiveName = "${baseName}.${extension}"
+}
+
+

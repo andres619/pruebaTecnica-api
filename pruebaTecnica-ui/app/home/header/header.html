@@ -1,0 +1,20 @@
+<div class="container-fluid">
+	<div class="logo">
+	</div>
+	<nav id="top">
+		<ul>
+			<li>{{time }}</li>
+			<li data-ng-if="authenticated">{{store}}</li>
+			<li>
+				<a href="#" data-ng-click="logout()"><i class="fa fa-times"></i> Cerrar sesión</a>
+				<span class="dropdown">
+					<a class="dropdown-toggle cambiar" data-toggle="dropdown" role="button"><span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" data-ng-click="$event.preventDefault(); change()">Cambiar contraseña</a></li>
+					</ul>
+				</span>
+			</li>
+		</ul>
+	</nav>
+</div>
+<div class="clear"></div>

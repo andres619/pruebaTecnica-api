@@ -1,0 +1,46 @@
+apply plugin: 'ear'
+apply plugin: 'java'
+
+group = 'co.com.todo1.store'
+
+test.dependsOn(":pruebaTecnica-ejb:test", ":pruebaTecnica-web:test", ":pruebaTecnica-data:test" )
+
+dependencies {
+	deploy project(path:':pruebaTecnica-data', configuration:'archives')
+	deploy project(path:':pruebaTecnica-ejb', configuration:'archives')
+	deploy project(path:':pruebaTecnica-web', configuration:'archives')
+		
+	earlib group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final', ext: 'jar'
+	earlib group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.9.0.RELEASE', ext: 'jar'
+	earlib group: 'org.springframework.data', name: 'spring-data-commons', version: '1.11.0.RELEASE', ext: 'jar'
+	earlib group: 'org.springframework', name: 'spring-core', version: '4.2.2.RELEASE', ext: 'jar'
+	earlib group: 'org.springframework', name: 'spring-context', version: '4.2.2.RELEASE', ext: 'jar'
+	earlib group: 'org.springframework', name: 'spring-beans', version: '4.2.2.RELEASE', ext: 'jar'
+	earlib group: 'org.springframework', name: 'spring-expression', version: '4.2.2.RELEASE', ext: 'jar'
+	earlib group: 'org.springframework', name: 'spring-aop', version: '4.2.2.RELEASE', ext: 'jar'
+	earlib group: 'org.springframework', name: 'spring-tx', version: '4.2.2.RELEASE', ext: 'jar'
+	earlib group: 'aopalliance', name: 'aopalliance', version: '1.0', ext: 'jar'
+	earlib group: 'commons-validator', name: 'commons-validator', version: '1.4.1', ext: 'jar'
+	earlib group: 'org.apache.commons', name: 'commons-lang3', version: '3.4', ext: 'jar'
+	earlib group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.2', ext: 'jar'
+	
+	earlib group: 'org.eclipse.jetty', name: 'jetty-servlets', version: '9.3.0.M2', ext: 'jar'
+	earlib group: 'org.eclipse.jetty', name: 'jetty-util', version: '9.3.0.M2', ext: 'jar'
+	
+	earlib group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.6.3', ext: 'jar'
+	earlib group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.6.3', ext: 'jar'
+	earlib group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.6.3', ext: 'jar'
+	
+	earlib group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.9', ext: 'jar'
+	
+	earlib group: 'commons-discovery', name: 'commons-discovery', version: '0.5', ext: 'jar'
+	earlib group: 'org.apache.xmlbeans', name: 'xmlbeans', version: '2.6.0', ext: 'jar'
+	earlib group: 'org.apache.commons', name: 'commons-collections4', version: '4.1', ext: 'jar'
+		
+	earlib group: 'com.google.code.gson', name: 'gson', version: '2.8.0', ext : 'jar'
+}
+
+ear {
+	archiveName = "${baseName}.${extension}"
+    libDirName 'lib'
+}

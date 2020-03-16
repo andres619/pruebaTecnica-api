@@ -1,0 +1,60 @@
+<alertas-directive alertas="alertas" ng-if="alertas.length>0">
+</alertas-directive>
+<div class="head">
+    <h2>Registrar Movimiento</h2>
+    <div class="clear"></div>
+</div>
+<br>
+
+<div class="content-app">
+    <div class="row">
+        <div class="col-md-6 div-span-info">
+            <span> Datos del movimiento*</span>
+        </div>
+    </div>
+
+    <!-- Loader template -->
+    <script type="text/ng-template" id="loader.tpl.html">
+        <div style="background:url('images/spinner.gif') no-repeat center center; margin-left: auto;
+    			margin-right: auto; width: 100px; height: 100px;"></div>
+    </script>
+
+    <div ng-http-loader methods="['POST', 'GET']" template="loader.tpl.html" title="Generando Reporte"></div>
+    <div class="clear"></div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-3">
+            <label for="repeatSelect"> Referencia Producto: </label>
+            <select name="repeatSelectReferencia" id="repeatSelectReferencia" ng-model="movimiento.referenciaProducto" class="inputFinanciero">
+                <option ng-repeat="option in resultadoReferencias" value="{{option.referencia}}">{{option.referencia}}</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label>Cantidad</label>
+            <input id='cantidad' ng-model="movimiento.cantidad" type="text" class="inputFinanciero">
+        </div>
+        <div class="col-md-3">
+            <label>Descripción</label>
+            <input id='descripcion' ng-model="movimiento.descripcion" type="text" class="inputFinanciero">
+        </div>
+        <div class="col-md-3">
+            <label for="repeatSelect"> Tipo Movimiento: </label>
+            <select name="repeatSelect" id="repeatSelect" ng-model="movimiento.tipo" class="inputFinanciero">
+                <option ng-repeat="option in resultadoTipos" value="{{option.tipo}}">{{option.tipo}}</option>
+            </select>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+	<div class="col-md-8">
+	</div>
+	
+    <div class="col-md-2 div-paginacion">
+        <button type="button" class="btn-principal" id='btnGuardarCambios' ng-click="registrarMovimiento()">Registrar Movimiento</button>
+    </div>
+
+</div>

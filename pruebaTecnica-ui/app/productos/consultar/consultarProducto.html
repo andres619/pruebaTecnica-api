@@ -1,0 +1,62 @@
+<alertas-directive alertas="alertas" ng-if="alertas.length>0">
+</alertas-directive>
+<div class="head">
+    <h2>Consultar Producto</h2>
+    <div class="clear"></div>
+</div>
+<br>
+
+<div class="content-app">
+    <div class="row">
+        <div class="col-md-6 div-span-info">
+            <span> Filtre la búsqueda por referencia ó consulte todos los productos</span>
+        </div>
+    </div>
+
+    <!-- Loader template -->
+    <script type="text/ng-template" id="loader.tpl.html">
+        <div style="background:url('images/spinner.gif') no-repeat center center; margin-left: auto;
+    			margin-right: auto; width: 100px; height: 100px;"></div>
+    </script>
+
+    <div ng-http-loader methods="['POST', 'GET']" template="loader.tpl.html" title="Generando Reporte"></div>
+    <div class="clear"></div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-3">
+            <label>Referencia Producto</label>
+            <input id='referenciaProducto' ng-model="filtro.referenciaProducto" type="text" class="inputFinanciero" required="true">
+        </div>
+
+        <div class="col-md-2 div-paginacion">
+            <button type="button" class="btn-principal" id='filtroReferencia' ng-click="buscarReferencia()">Filtro Referencia</button>
+        </div>
+        <div class="col-md-2 div-paginacion">
+            <button type="button" class="btn-principal" id='todosProductos' ng-click="buscarTodos()">Todos los productos</button>
+        </div>
+
+    </div>
+</div>
+<div id="reporte-abonos" class="content-app">
+    <ul class="flex headTable" ng-if="productosFiltrados.length > 0">
+        <li style="width: 30% !important;">Referencia</li>
+        <li style="width: 60% !important;">Descripción</li>
+        <li style="width: 10% !important;">Cantidad Disponible</li>
+    </ul>
+    <ul class="flex contTable" data-ng-repeat="cliente in filtered = productosFiltrados| paging : (paging.page - 1) * paging.limit | limitTo : paging.limit" ng-if="productosFiltrados.length > 0">
+        <li style="width: 30% !important;">{{cliente.referencia}}</li>
+        <li style="width: 60% !important;">{{cliente.descripcion}}</li>
+        <li style="width: 10% !important;">{{cliente.cantidadDisponible}}</li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="paginador" style="margin-left: 190px !important">
+            <pagination on-select-page="setPage(page)" page="paging.page" total-items="paging.items" ng-model="paging.page" max-size="paging.maxSize" items-per-page="paging.limit" class="pagination-sm" boundary-links="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" data-ng-if="productosFiltrados.length > 0" />
+        </div>
+    </div>
+
+</div>

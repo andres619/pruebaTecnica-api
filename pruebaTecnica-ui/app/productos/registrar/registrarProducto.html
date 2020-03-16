@@ -1,0 +1,48 @@
+<alertas-directive alertas="alertas" ng-if="alertas.length>0">
+</alertas-directive>
+<div class="head">
+    <h2>Registrar Producto</h2>
+    <div class="clear"></div>
+</div>
+<br>
+
+<div class="content-app">
+    <div class="row">
+        <div class="col-md-6 div-span-info">
+            <span> Datos del producto*</span>
+        </div>
+    </div>
+
+    <!-- Loader template -->
+    <script type="text/ng-template" id="loader.tpl.html">
+        <div style="background:url('images/spinner.gif') no-repeat center center; margin-left: auto;
+    			margin-right: auto; width: 100px; height: 100px;"></div>
+    </script>
+
+    <div ng-http-loader methods="['POST', 'GET']" template="loader.tpl.html" title="Generando Reporte"></div>
+    <div class="clear"></div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-3">
+            <label>Referencia Producto</label>
+            <input id='referenciaProducto' ng-model="filtro.referenciaProducto" type="text" class="inputFinanciero">    
+        </div>
+        <div class="col-md-3">
+            <label>Descripción</label>
+            <input id='descripcion' ng-model="filtro.descripcion" type="text" class="inputFinanciero" required="true">
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+	<div class="col-md-8">
+	</div>
+	
+    <div class="col-md-2 div-paginacion">
+        <button type="button" class="btn-principal" id='btnGuardarCambios' ng-click="registrarProducto()">RegistrarProducto</button>
+    </div>
+
+</div>
