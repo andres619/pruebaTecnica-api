@@ -6,7 +6,7 @@
   "repository": "https://github.com/angular/angular-seed",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "1.17.2",
+    "body-parser": "1.20.3",
     "express": "^4.15.3",
     "gulp-string-replace": "^0.4.0",
     "morgan": "^1.8.2",
